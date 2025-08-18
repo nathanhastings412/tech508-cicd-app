@@ -1,5 +1,5 @@
 ## Create Jenkins Job and observe its output
-1. add new
+1. Add new
 2. nathan-first-project
 3. discord old builds
 4. max number of 5
@@ -90,3 +90,35 @@
 13. configure
 14. branch specifier change to `*/dev`
 15. save and do a git push
+
+
+
+
+ssh -o StrictHostKeyChecking=no ubuntu@ec2-108-129-195-213.eu-west-1.compute.amazonaws.com "echo connected"
+
+rsync -avz --delete "$WORKSPACE/" ubuntu@ec2-108-129-195-213.eu-west-1.compute.amazonaws.com:/home/ubuntu/repo
+
+ssh ubuntu@ec2-108-129-195-213.eu-west-1.compute.amazonaws.com << 'EOF'
+	cd repo/app
+    npm install
+    pm2 stop all
+    pm2 start app.js
+EOF
+
+1. name
+2. description
+3. max load
+4. build triggers after job 2
+5. add ssh agent
+6. build execute shell
+7. ssh -o StrictHostKeyChecking=no ubuntu@ec2-108-129-195-213.eu-west-1.compute.amazonaws.com "echo connected"
+
+rsync -avz --delete "$WORKSPACE/" ubuntu@ec2-108-129-195-213.eu-west-1.compute.amazonaws.com:/home/ubuntu/repo
+
+ssh ubuntu@ec2-108-129-195-213.eu-west-1.compute.amazonaws.com << 'EOF'
+	cd repo/app
+    npm install
+    pm2 stop all
+    pm2 start app.js
+EOF
+8. save, push a change
