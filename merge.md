@@ -33,7 +33,14 @@ Job 2 is merging the changes
    - Push updated main branch
      - `git push origin main`
 10. Save and apply
-11. In Job 1 > post-build actions > add post-build action > build other projects
+11. Post-build actions > git publisher
+    - push only if build succeeds
+    - merge results
+    - force push
+    - Branches
+      - push `main`
+      - target remote name `origin`
+12. In Job 1 > post-build actions > add post-build action > build other projects
     - select job2
     - trigger only if build is stable
-12. now when you push changes to your dev branch locally, jenkins pulls those changes from that github branch and merges them into the main branch.
+13. now when you push changes to your dev branch locally, jenkins pulls those changes from that github branch and merges them into the main branch.
